@@ -4,7 +4,7 @@ import MatrailCardItem from "./MatrailCardItem";
 import axios from "axios";
 import Link from "next/link";
 
-const StudyMatrailSection = ({ courseId }) => {
+const StudyMatrailSection = ({ courseId, course }) => {
     const materialList = [
         {
             name: "Notes/Chapters",
@@ -60,7 +60,7 @@ const StudyMatrailSection = ({ courseId }) => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
                 {materialList.map((item, index) => (
                     <Link href={`/course/${courseId}/${item.path}`} key={index}>                    
-                        <MatrailCardItem  item={item} studyTypeContent={studyTypeContent} />
+                        <MatrailCardItem item={item} studyTypeContent={studyTypeContent} course={course} refrashData={getStudyMatrail} />
                     </Link>
                 ))}
             </div>

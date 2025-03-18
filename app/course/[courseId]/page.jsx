@@ -37,7 +37,7 @@ const Course = () => {
             ) : course ? (
                     <div className=' mx-10 md:mx-36 lg:px-60 mt-10  '> 
                         <CourseIntro course={course} />
-                        <StudyMatrailSection courseId={courseId} />
+                        <StudyMatrailSection courseId={courseId} course={course} />
                         <ChapterList course={course} />
 
 
