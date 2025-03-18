@@ -15,20 +15,15 @@ const Provider = ({children}) => {
     const existUser = async () => {
         if (!user?.primaryEmailAddress?.emailAddress) return;
     
-        try {
-            console.log("Checking user existence in DB...");
-    
+        try { 
             if (!db) {
                 console.error("Database not initialized");
                 return;
             }
-    
-            console.log("Database instance:", db);
+     
      
             const result = await db.select().from(USER_TABLE).where(eq(USER_TABLE.email, user.primaryEmailAddress.emailAddress));
-    
-            console.log("Query result:", result);
-    
+     
             if (result.length === 0) {
                 console.log("User does not exist, inserting...");
      
@@ -37,8 +32,7 @@ const Provider = ({children}) => {
                     name:user?.fullName,
                     email: user?.primaryEmailAddress.emailAddress
                 });
-    
-                console.log("User inserted successfully.");
+     
             } else {
                 console.log("User already exists.");
             }

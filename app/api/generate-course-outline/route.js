@@ -2,9 +2,7 @@ import { NextResponse } from "next/server";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { db } from "@/config/db";
 import { STUDY_MATERIAL_TABLE } from "@/config/schema";
-import { inngest } from "@/app/inngest/client";
-import { date } from "drizzle-orm/mysql-core";
-
+import { inngest } from "@/app/inngest/client"; 
 export async function POST(req) {
   try {
     const { courseId, topic, studyType, difficultyLevel, createdBy } =

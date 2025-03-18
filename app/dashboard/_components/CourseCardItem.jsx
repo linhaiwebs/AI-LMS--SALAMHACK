@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 const CourseCardItem = ({ course }) => {
@@ -21,21 +22,15 @@ const CourseCardItem = ({ course }) => {
                 <p className="text-sm text-gray-600 mt-2 line-clamp-2 h-10">
                     {course?.courseLayout?.courseSummary || "Course summary goes here. This is a brief description of what the course contains."}
                 </p>
-
-                <div className="mt-4">
-                    <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs font-medium text-gray-500">Progress</span>
-                        <span className="text-xs font-medium text-gray-500">
-                            {course?.progress || 3}%
-                        </span>
-                    </div>
-                    <Progress value={course?.progress || 3} className="h-2 bg-gray-100" />
-                </div>
+ 
 
                 <div className="mt-4 flex justify-end">
-                    <Button  >
+                    <Link href={`/course/${course?.courseId}`}>
+               
+                    <Button>
                         View Course
-                    </Button>
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </div>
