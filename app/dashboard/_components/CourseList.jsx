@@ -28,22 +28,15 @@ const CourseList = () => {
     };
  
     useEffect(() => {
-
-
-
         console.log("Updated coursesList:", coursesList);
- 
+
         const interval = setInterval(GetCourseList, 5000);
- 
+
         GetCourseList();
 
-        return () => clearInterval(interval);  
+        return () => clearInterval(interval);
 
-
-
-
-    }, [coursesList]);
-
+    }, []);
 
 
 
