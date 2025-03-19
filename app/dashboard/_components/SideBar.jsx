@@ -1,13 +1,16 @@
 "use client";
+import { CourseCountContext } from "@/app/_Context/CourseCountContext";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { LayoutDashboard, Shield, User } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useContext } from "react";
 
 const SideBar = () => {
+
+  const { totalCourse } = useContext(CourseCountContext);
   const MenuList = [
     {
       name: "Dashboard",
@@ -54,9 +57,9 @@ const SideBar = () => {
         ))}
       </div>
       <div className=" w-[85%] ring-1 ring-slate-200 bg-slate-50 p-2 rounded absolute  bottom-16" >
-        <h2 className=" text-lg"> Available Cardits: 5 </h2>
-        <Progress value={30} />
-        <h2>1 out of 5 Cardites use</h2>
+        <h2 className=" text-lg"> Available Cardits: { 5 - totalCourse} </h2>
+        <Progress value={(totalCourse/5)*100} />
+        <h2>{totalCourse} out of 5 Cardites use</h2>
         <Link
           href={"/dashboard/upgrade"}
           className=" text-primary text-xs mt-3 underline"

@@ -21,11 +21,18 @@ const Quiz = () => {
 
     useEffect(() => {
         fetchQuiz();
-
+        let attemptCount = 0;
+        const maxAttempts = 5;
         let intervalId;
-        if (quizStatus === "Generating") {
-            intervalId = setInterval(fetchQuiz, 5000); // Poll every 5 seconds
-        }
+        intervalId = setInterval(() => {
+            attemptCount++;
+            if (attemptCount < maxAttempts) {
+                fetchQuiz();
+            } else {
+                clearInterval(intervalId);
+                console.log("Quiz polling completed after 5 attempts");
+            }
+        }, 5000);
 
         return () => {
             if (intervalId) clearInterval(intervalId);
@@ -54,14 +61,20 @@ const Quiz = () => {
 
             const quizResponse = response?.data?.notes?.[0];
 
+            console.log(response?.data?.notes?.[0])
+            // { id: 47, courseId: '6e6f6a4f-5b84-4561-a126-2ced92dd3a92', content: {… }, type: 'Quiz', status: 'Ready' }
+
+            console.log(quizResponse.status)
+            //    Ready
             if (!quizResponse) {
                 setError("No quiz data found");
                 return;
             }
 
-            setQuizStatus(quizResponse.status || "Generating");
+            setQuizStatus(quizResponse.status);
 
-            if (quizResponse.status === "Ready" && quizResponse?.content?.quiz?.length > 0) {
+            if (quizResponse.status === "Ready" && quizResponse?.content?.quiz?.questions?.length > 0) {
+                console.log(quizResponse.content.quiz)
                 setQuizData(quizResponse.content.quiz);
                 setCurrentQuestion(0);
                 setUserAnswers({});
@@ -77,7 +90,7 @@ const Quiz = () => {
     };
 
     const handleSelectAnswer = (questionIndex, selectedOption) => {
-        const question = quizData[questionIndex];
+        const question = quizData.questions[questionIndex];
         const isCorrect = selectedOption === question?.answer;
 
         setUserAnswers((prev) => ({ ...prev, [questionIndex]: selectedOption }));
@@ -99,7 +112,7 @@ const Quiz = () => {
         if (!quizData) return { score: 0, total: 0, percentage: 0 };
 
         const correctAnswers = Object.values(feedback).filter(Boolean).length;
-        const totalQuestions = quizData.length;
+        const totalQuestions = quizData.questions.length;
         const percentage = totalQuestions > 0 ? Math.round((correctAnswers / totalQuestions) * 100) : 0;
 
         return {
@@ -151,8 +164,7 @@ const Quiz = () => {
             </div>
         );
     }
-
-    if (!quizData || quizData.length === 0) {
+    if (!quizData || quizData?.questions?.length === 0) {
         return (
             <div className="max-w-6xl mx-auto p-6 bg-white border border-blue-100 rounded-md shadow-sm">
                 <div className="p-4 text-center">
@@ -208,7 +220,7 @@ const Quiz = () => {
 
                     <h2 className="text-xl font-semibold mb-4">Question Summary</h2>
                     <div className="w-full max-w-2xl space-y-4 mb-8">
-                        {quizData.map((question, index) => (
+                        {quizData.questions.map((question, index) => (
                             <div key={index} className="border rounded-lg p-4">
                                 <div className="flex items-start gap-3">
                                     <div className="mt-1">
@@ -257,7 +269,7 @@ const Quiz = () => {
         );
     }
 
-    const question = quizData[currentQuestion];
+    const currentQuestionData = quizData.questions[currentQuestion];
     const showFeedback = feedback[currentQuestion] !== undefined;
     const isAnswerCorrect = feedback[currentQuestion];
     const answeredQuestions = Object.keys(userAnswers).length;
@@ -294,16 +306,16 @@ const Quiz = () => {
                     Previous
                 </Button>
                 <div className="flex space-x-2">
-                    {quizData.map((_, index) => (
+                    {quizData.questions.map((_, index) => (
                         <div
                             key={index}
                             className={`w-3 h-3 rounded-full cursor-pointer ${feedback[index] !== undefined
-                                    ? feedback[index]
-                                        ? "bg-green-500"
-                                        : "bg-red-500"
-                                    : index === currentQuestion
-                                        ? "bg-blue-500"
-                                        : "bg-gray-300"
+                                ? feedback[index]
+                                    ? "bg-green-500"
+                                    : "bg-red-500"
+                                : index === currentQuestion
+                                    ? "bg-blue-500"
+                                    : "bg-gray-300"
                                 }`}
                             onClick={() => setCurrentQuestion(index)}
                         />
@@ -311,7 +323,7 @@ const Quiz = () => {
                 </div>
                 <Button
                     variant="outline"
-                    disabled={currentQuestion === quizData.length - 1}
+                    disabled={currentQuestion === quizData.questions.length - 1}
                     onClick={() => setCurrentQuestion((prev) => prev + 1)}
                     className="px-4"
                 >
@@ -320,31 +332,31 @@ const Quiz = () => {
             </div>
 
             <div className="bg-gray-50 rounded-lg p-6 mb-6">
-                <h2 className="text-lg font-medium mb-6">Question {currentQuestion + 1} of {quizData.length}</h2>
-                <p className="text-lg mb-6">{question?.question}</p>
+                <h2 className="text-lg font-medium mb-6">Question {currentQuestion + 1} of {quizData.questions.length}</h2>
+                <p className="text-lg mb-6">{currentQuestionData?.question}</p>
                 <div className="grid grid-cols-1 gap-4 mb-6">
-                    {question?.options?.map((option, index) => (
+                    {currentQuestionData?.options?.map((option, index) => (
                         <button
                             key={index}
                             className={`p-4 border rounded-lg text-left transition-all ${userAnswers[currentQuestion] === option
-                                    ? showFeedback
-                                        ? isAnswerCorrect
-                                            ? "bg-green-100 border-green-500 text-green-800"
-                                            : "bg-red-100 border-red-500 text-red-800"
-                                        : "bg-blue-100 border-blue-500"
-                                    : "border-gray-300 hover:bg-gray-100"
+                                ? showFeedback
+                                    ? isAnswerCorrect
+                                        ? "bg-green-100 border-green-500 text-green-800"
+                                        : "bg-red-100 border-red-500 text-red-800"
+                                    : "bg-blue-100 border-blue-500"
+                                : "border-gray-300 hover:bg-gray-100"
                                 }`}
                             onClick={() => handleSelectAnswer(currentQuestion, option)}
                             disabled={showFeedback}
                         >
                             <div className="flex items-center gap-3">
                                 <div className={`w-6 h-6 rounded-full flex items-center justify-center ${userAnswers[currentQuestion] === option
-                                        ? showFeedback
-                                            ? isAnswerCorrect
-                                                ? "bg-green-500 text-white"
-                                                : "bg-red-500 text-white"
-                                            : "bg-blue-500 text-white"
-                                        : "bg-gray-200 text-gray-700"
+                                    ? showFeedback
+                                        ? isAnswerCorrect
+                                            ? "bg-green-500 text-white"
+                                            : "bg-red-500 text-white"
+                                        : "bg-blue-500 text-white"
+                                    : "bg-gray-200 text-gray-700"
                                     }`}>
                                     {String.fromCharCode(65 + index)}
                                 </div>
@@ -357,8 +369,8 @@ const Quiz = () => {
                 {showFeedback && (
                     <div
                         className={`p-4 rounded-lg flex items-center gap-3 ${isAnswerCorrect
-                                ? "bg-green-100 border border-green-200 text-green-800"
-                                : "bg-red-100 border border-red-200 text-red-800"
+                            ? "bg-green-100 border border-green-200 text-green-800"
+                            : "bg-red-100 border border-red-200 text-red-800"
                             }`}
                     >
                         {isAnswerCorrect ? (
@@ -372,7 +384,7 @@ const Quiz = () => {
                             </p>
                             {!isAnswerCorrect && (
                                 <p className="text-sm mt-1">
-                                    The correct answer is: <span className="font-medium">{question.correctAnswer}</span>
+                                    The correct answer is: <span className="font-medium">{currentQuestionData.answer}</span>
                                 </p>
                             )}
                         </div>
@@ -382,9 +394,9 @@ const Quiz = () => {
 
             <div className="flex justify-between">
                 <div className="text-sm text-gray-600">
-                    {answeredQuestions} of {quizData.length} questions answered
+                    {answeredQuestions} of {quizData.questions.length} questions answered
                 </div>
-                {currentQuestion === quizData.length - 1 && (
+                {currentQuestion === quizData.questions.length - 1 && (
                     <Button
                         onClick={handleShowResults}
                         disabled={!canShowResults}

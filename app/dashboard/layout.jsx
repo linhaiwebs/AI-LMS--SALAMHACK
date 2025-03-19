@@ -1,9 +1,15 @@
+ 
 import React from "react";
 import SideBar from "./_components/SideBar";
-import DashboardHeader from "./_components/DashboardHeader";
+import DashboardHeader from "./_components/DashboardHeader"; 
+import CourseCountProvider from "../_Context/CourseCountContext";
 
-const DashboardLayout = ({ children } ) => {
+const DashboardLayout = ({ children }) => { 
   return (
+    <CourseCountProvider>
+
+
+      
     <div className="flex h-screen">
  
       <aside className="md:w-64  hidden md:block fixed h-screen">
@@ -16,7 +22,8 @@ const DashboardLayout = ({ children } ) => {
         </header> 
         <main className="flex-1 p-6 bg-gray-100">{children}</main>
       </div>
-    </div>
+      </div>
+    </CourseCountProvider>
   );
 };
 
