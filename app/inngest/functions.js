@@ -131,45 +131,62 @@ export const GenerateNotes = inngest.createFunction(
 
 
 
+ export const GenerateStudyTypeContent = inngest.createFunction(
+   { id: "Generate Study Type Content" },
+   { event: "studyType.content" },
+   async ({ event, step }) => {
+     try {
+       const { courseTitle, recordId, studyType } = event.data;
+       console.log("StudyType:", studyType); // Flashcard / Quiz
 
-export const GenerateStudyTypeContent = inngest.createFunction(
-  { id: "Generate Study Type Content" },
-  { event: "studyType.content" },
-  async ({ event, step }) => {
-    try {
-      const { courseTitle, recordId } = event.data;
+       const PROMPT_MAP = {
+         Flashcard: `Generate flashcards on the topic: ${courseTitle}, covering User Interface (UI) Development and Basic App Navigation. The response should be in JSON format with front and back content, up to 15 items.`,
+         Quiz: `Generate a quiz on the topic: ${courseTitle}. Include questions with multiple options and the correct answer in JSON format, max 10 questions.`,
+       };
 
-      // Generate Flashcards using AI
-      const FlashcardAiResult = await step.run(
-        "Generate Flashcards with AI",
-        async () => {
-          const PROMPT = `
-          Generate flashcards on the topic: ${courseTitle},
-          covering User Interface (UI) Development and Basic App Navigation.
-          The response should be in JSON format with front and back content, up to 15 items.
-        `;
+       if (!PROMPT_MAP[studyType]) {
+         throw new Error(`Invalid study type: ${studyType}`);
+       }
 
-          const result = await model.generateContent({
-            generationConfig,
-            contents: [{ role: "user", parts: [{ text: PROMPT }] }],
-          });
+       // Generate content using AI
+       const generatedContent = await step.run(
+         `Generate ${studyType} with AI`,
+         async () => {
+           try {
+             const result = await model.generateContent({
+               generationConfig,
+               contents: [
+                 { role: "user", parts: [{ text: PROMPT_MAP[studyType] }] },
+               ],
+             });
 
-          return JSON.parse(result.response.text());
-        }
-      );
+             return JSON.parse(result.response.text());
+           } catch (error) {
+             console.error(`AI generation failed for ${studyType}:`, error);
+             throw new Error(`Failed to generate ${studyType} content.`);
+           }
+         }
+       );
 
-      // Save Generated Content to DB
-      await step.run("Save Generated Content to DB", async () => {
-        await db
-          .update(STUDY_TYPE_CONTENT_TABLE)
-          .set({ content: FlashcardAiResult })
-          .where(eq(STUDY_TYPE_CONTENT_TABLE.id, recordId));
-      });
+       // Save generated content to DB
+       await step.run("Save Generated Content to DB", async () => {
+         try {
+           await db
+             .update(STUDY_TYPE_CONTENT_TABLE)
+             .set({ content: generatedContent })
+             .where(eq(STUDY_TYPE_CONTENT_TABLE.id, recordId));
+         } catch (error) {
+           console.error("Database update failed:", error);
+           throw new Error("Failed to save generated content.");
+         }
+       });
 
-      return { message: "Flashcards generated and saved successfully" };
-    } catch (error) {
-      console.error("Error in GenerateStudyTypeContent:", error);
-      throw new Error("Failed to generate study content.");
-    }
-  }
-);
+       return {
+         message: `${studyType} content generated and saved successfully.`,
+       };
+     } catch (error) {
+       console.error("Error in GenerateStudyTypeContent:", error);
+       throw new Error("Failed to generate study content.");
+     }
+   }
+ );

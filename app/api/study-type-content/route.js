@@ -23,6 +23,7 @@
        data: {
          courseTitle,
          recordId: result[0].id,
+         studyType:type,
        },
      });
 

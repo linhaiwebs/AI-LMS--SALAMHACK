@@ -7,7 +7,7 @@ import Link from "next/link";
 const StudyMatrailSection = ({ courseId, course }) => {
     const materialList = [
         {
-            name: "Notes/Chapters",
+            name: "notes",
             desc: "Read notes to prepare it",
             icon: "/notes.png",
             path: "/notes",

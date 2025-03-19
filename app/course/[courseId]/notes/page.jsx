@@ -1,4 +1,4 @@
-"use client";
+ "use client";
 
 import { Button } from "@/components/ui/button";
 import axios from "axios";
@@ -14,10 +14,27 @@ const ViewNotes = () => {
   const [error, setError] = useState(null);
   const [currentStep, setCurrentStep] = useState(0);
   const [showCodeBlocks, setShowCodeBlocks] = useState(true);
+  const [timeoutId, setTimeoutId] = useState(null);
 
   useEffect(() => {
     getNotes();
-  }, [courseId]);
+    
+    // Set a timeout to wait for data
+    const timeout = setTimeout(() => {
+      if (isLoading) {
+        setError("It's taking longer than expected to load the notes. Still trying...");
+      }
+    }, 5000);
+    
+    setTimeoutId(timeout);
+    
+    return () => {
+      // Clear timeout when component unmounts or when data is loaded
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, []);
 
   const getNotes = async () => {
     try {
@@ -29,10 +46,16 @@ const ViewNotes = () => {
         studyType: "notes",
       });
 
-      const fetchedNotes = result?.data?.notes || [];
+      const fetchedNotes = result?.data?.notes;
+      console.log(fetchedNotes);
       setNotes(fetchedNotes);
 
       setCurrentStep(fetchedNotes.length > 0 ? 0 : -1);
+      
+      // Clear timeout when data is loaded successfully
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
     } catch (error) {
       console.error("Error fetching notes:", error);
       setError("Failed to load notes. Please try again.");
@@ -55,7 +78,9 @@ const ViewNotes = () => {
  
   const parseNoteContent = (noteString) => {
     try {
-      const parsedNote = JSON.parse(noteString);
+      // Safely parse JSON by handling potential control characters
+      const cleanedString = noteString.replace(/[\u0000-\u001F\u007F-\u009F]/g, "");
+      const parsedNote = JSON.parse(cleanedString);
  
       const enhanceContent = (html) => {
         if (!showCodeBlocks) return html;
@@ -108,7 +133,12 @@ const ViewNotes = () => {
       }
     } catch (error) {
       console.error("Error parsing note:", error);
-      return <p className="text-red-500">Error displaying note content</p>;
+      return (
+        <div className="text-red-500 p-4 border border-red-300 rounded">
+          <p>There was an error parsing this note. It might contain invalid JSON format.</p>
+          <p className="mt-2 text-sm font-mono">{error.message}</p>
+        </div>
+      );
     }
   };
  
@@ -130,8 +160,9 @@ const ViewNotes = () => {
       </div>
 
       {isLoading ? (
-        <div className="flex justify-center py-12">
-          <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+        <div className="flex flex-col items-center py-12">
+          <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin mb-4"></div>
+          {error && <p className="text-amber-600 mt-2">{error}</p>}
         </div>
       ) : error ? (
         <div className="text-center py-8">

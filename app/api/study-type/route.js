@@ -30,8 +30,8 @@ export async function POST(req) {
       return NextResponse.json({
         notes,
         flashcard: conentList?.find((item) => item.type == "Flashcard") || null,
-        quiz: null,
-        qa: null,
+        quiz: conentList?.find((item) => item.type == "Quiz") || null,
+        qa: conentList?.find((item) => item.type == "QA") || null,
       });
     } else if (studyType === "notes") {
       const notes = await db
