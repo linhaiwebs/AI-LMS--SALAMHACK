@@ -119,3 +119,10 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+.hero-bg {
+  background-image: url('https://preline.co/assets/svg/examples/polygon-bg-element.svg');
+  background-size: cover;
+  background-position: center;
+}

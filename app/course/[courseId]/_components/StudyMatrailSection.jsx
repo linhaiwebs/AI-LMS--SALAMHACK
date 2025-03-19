@@ -8,7 +8,7 @@ const StudyMatrailSection = ({ courseId, course }) => {
     const materialList = [
         {
             name: "notes",
-            desc: "Read notes to prepare it",
+            desc: "Read notes to prepare it make easy",
             icon: "/notes.png",
             path: "/notes",
             types: "notes",
@@ -27,13 +27,7 @@ const StudyMatrailSection = ({ courseId, course }) => {
             path: "/quiz",
             types: "quiz",
         },
-        {
-            name: "Question/Answer",
-            desc: "Help to practice your learning",
-            icon: "/qa.png",
-            path: "/qa",
-            types: "qa",
-        },
+      
     ];
 
     const [studyTypeContent, setStudyTypeContent] = useState(null);
@@ -57,7 +51,7 @@ const StudyMatrailSection = ({ courseId, course }) => {
     return (
         <div className="mt-5">
             <h2 className="font-medium text-xl">Study Material</h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-5 my-3">
                 {materialList.map((item, index) => (
                     <Link href={`/course/${courseId}/${item.path}`} key={index}>                    
                         <MatrailCardItem item={item} studyTypeContent={studyTypeContent} course={course} refrashData={getStudyMatrail} />

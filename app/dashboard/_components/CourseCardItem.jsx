@@ -1,10 +1,10 @@
-import { Button } from '@/components/ui/button'
-import { Progress } from '@/components/ui/progress'
+import { Button } from '@/components/ui/button' 
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
-
+import { Loader2 } from "lucide-react";
 const CourseCardItem = ({ course }) => {
+    console.log(course)
     return (
         <div className="border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
             <div className="p-4">
@@ -25,12 +25,16 @@ const CourseCardItem = ({ course }) => {
  
 
                 <div className="mt-4 flex justify-end">
-                    <Link href={`/course/${course?.courseId}`}>
-               
-                    <Button>
-                        View Course
+                    {course?.status === "Generating" ? (
+                        <Button disabled className="flex items-center gap-2">
+                            <Loader2 className="animate-spin w-4 h-4" />
+                            Generating...
                         </Button>
-                    </Link>
+                    ) : (
+                        <Link href={`/course/${course?.courseId}`}>
+                            <Button>View Course</Button>
+                        </Link>
+                    )}
                 </div>
             </div>
         </div>

@@ -12,10 +12,8 @@ const MaterialCardItem = ({ item, studyTypeContent, course, refreshData }) => {
                 courseId: course?.courseId,
                 courseTitle: course?.courseLayout?.courseTitle,
                 type: item.name,
-            });
-            console.log(result);
-            // Call refreshData without argument or with true
-            refreshData(true);
+            }); 
+           // refreshData(true);
         } catch (error) {
             console.error("Error generating content:", error);
         }

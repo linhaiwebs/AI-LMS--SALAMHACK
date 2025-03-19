@@ -19,21 +19,21 @@ const ViewNotes = () => {
   useEffect(() => {
     getNotes();
     
-    // Set a timeout to wait for data
-    const timeout = setTimeout(() => {
-      if (isLoading) {
-        setError("It's taking longer than expected to load the notes. Still trying...");
-      }
-    }, 5000);
+    // // Set a timeout to wait for data
+    // const timeout = setTimeout(() => {
+    //   if (isLoading) {
+    //     setError("It's taking longer than expected to load the notes. Still trying...");
+    //   }
+    // }, 5000);
     
-    setTimeoutId(timeout);
+    // setTimeoutId(timeout);
     
-    return () => {
-      // Clear timeout when component unmounts or when data is loaded
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-    };
+    // return () => {
+    //   // Clear timeout when component unmounts or when data is loaded
+    //   if (timeoutId) {
+    //     clearTimeout(timeoutId);
+    //   }
+    // };
   }, []);
 
   const getNotes = async () => {

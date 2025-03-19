@@ -4,12 +4,10 @@ import CourseList from './_components/CourseList'
 
 const Dashboard = () => {
   return (
-    <div className=''>
+    <div>
       <Bunner />
-      <CourseList/>
-        
-        
-         </div>
+      <CourseList/>    
+     </div>
   )
 }
 

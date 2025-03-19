@@ -39,8 +39,9 @@ const SideBar = () => {
       </div>
       <div className="">
         {MenuList.map((menu, index) => (
+          <Link href={menu.path}    key={index}> 
           <div
-            key={index}
+         
             className={`flex items-center  
                 gap-5 my-2 p-3 hover:bg-slate-200 rounded-sm cursor-pointer
                  hover:text-slate-900 transition-all duration-300   
@@ -49,6 +50,7 @@ const SideBar = () => {
             <menu.icon />
             <h2 className=""> {menu.name}</h2>
           </div>
+          </Link>
         ))}
       </div>
       <div className=" w-[85%] ring-1 ring-slate-200 bg-slate-50 p-2 rounded absolute  bottom-16" >
