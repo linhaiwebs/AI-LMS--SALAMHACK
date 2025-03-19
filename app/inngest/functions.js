@@ -4,6 +4,8 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { CHAPTER_NOTES_TABLE, STUDY_MATERIAL_TABLE, STUDY_TYPE_CONTENT_TABLE } from "@/config/schema";
 import { eq } from "drizzle-orm"; 
 
+import zlib from "zlib";
+
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
@@ -15,108 +17,126 @@ const generationConfig = {
   responseMimeType: "application/json",
 };
 
- export const GenerateNotes = inngest.createFunction(
-   { id: "generate-course" },
-   { event: "notes.generate" },
-   async ({ event, step }) => {
-     let { course } = event.data;
- 
-     const studyMaterialTable = course?.[0]?.STUDY_MATERIAL_TABLE;
-     const chapters = studyMaterialTable?.courseLayout?.chapters || [];
-     const courseId = studyMaterialTable?.courseId;
- 
-     if (!chapters.length || !courseId) {
-       console.error("Missing required data:", {
-         hasChapters: !!chapters.length,
-         hasCourseId: !!courseId,
-       });
-       return {
-         notesResult: "Missing required data",
-         updateCourseStatusResult: "Skipped due to missing data",
-       };
-     }
 
-     console.log(
-       "Processing",
-       chapters.length,
-       "chapters for course ID:",
-       courseId
-     ); 
-     const notesResult = await step.run("Generate Chapter Notes", async () => {
-       
-       const processChapter = async (chapter, index) => {
-         try {
-           const chapterId = Date.now() + index;
-           const PROMPT = `
+export const GenerateNotes = inngest.createFunction(
+  { id: "generate-course" },
+  { event: "notes.generate" },
+  async ({ event, step }) => {
+    let { course } = event.data;
+
+    const studyMaterialTable = course?.[0]?.STUDY_MATERIAL_TABLE;
+    const chapters = studyMaterialTable?.courseLayout?.chapters || [];
+    const courseId = studyMaterialTable?.courseId;
+
+    if (!chapters.length || !courseId) {
+      console.error("Missing required data:", {
+        hasChapters: !!chapters.length,
+        hasCourseId: !!courseId,
+      });
+      return compressResponse({
+        notesResult: "Missing required data",
+        updateCourseStatusResult: "Skipped due to missing data",
+      });
+    }
+
+    console.log(
+      "Processing",
+      chapters.length,
+      "chapters for course ID:",
+      courseId
+    );
+
+    const notesResult = await step.run("Generate Chapter Notes", async () => {
+      const processChapter = async (chapter, index) => {
+        try {
+          const chapterId = Date.now() + index;
+          const PROMPT = `
             Generate detailed exam material content for the following chapter.
             Ensure all topics are included and format the content in HTML.
             (Do not add <html>, <head>, <body>, or <title> tags).
             Chapter Details: ${JSON.stringify(chapter)}
           `;
 
-           const result = await model.generateContent({
-             generationConfig,
-             contents: [{ role: "user", parts: [{ text: PROMPT }] }],
-           });
+          const result = await model.generateContent({
+            generationConfig,
+            contents: [{ role: "user", parts: [{ text: PROMPT }] }],
+          });
 
-           const aiResponse =
-             result.response?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+          const aiResponse =
+            result.response?.candidates?.[0]?.content?.parts?.[0]?.text || "";
 
-           await db.insert(CHAPTER_NOTES_TABLE).values({
-             chapterId,
-             courseId,
-             notes: aiResponse,
-           });
+          await db.insert(CHAPTER_NOTES_TABLE).values({
+            chapterId,
+            courseId,
+            notes: aiResponse,
+          });
 
-           return { chapterId, status: "success" };
-         } catch (error) {
-           console.error(`Error processing chapter ${index}:`, error);
-           return {
-             chapterId: `chapter-${index}`,
-             status: "failed",
-             error: error.message || "Unknown error",
-           };
-         }
-       };
+          return { chapterId, status: "success" };
+        } catch (error) {
+          console.error(`Error processing chapter ${index}:`, error);
+          return {
+            chapterId: `chapter-${index}`,
+            status: "failed",
+            error: error.message || "Unknown error",
+          };
+        }
+      };
+
+      const concurrencyLimit = 5; 
+      const batchPromises = [];
+
+      for (let i = 0; i < chapters.length; i += concurrencyLimit) {
+        const batch = chapters.slice(i, i + concurrencyLimit);
+        batchPromises.push(
+          Promise.allSettled(
+            batch.map((chapter, batchIndex) =>
+              processChapter(chapter, i + batchIndex)
+            )
+          )
+        );
+      }
+
+      const results = (await Promise.all(batchPromises)).flat();
+
+      return results.map((res) =>
+        res.status === "fulfilled"
+          ? res.value
+          : { status: "failed", error: res.reason }
+      );
+    });
  
-       const results = [];
-       const concurrencyLimit = 3;
+    const updateCourseStatusResult = await step.run(
+      "Update Course Status to Ready",
+      async () => {
+        try {
+          await db
+            .update(STUDY_MATERIAL_TABLE)
+            .set({ status: "Ready" })
+            .where(eq(STUDY_MATERIAL_TABLE.courseId, courseId));
 
-       for (let i = 0; i < chapters.length; i += concurrencyLimit) {
-         const batch = chapters.slice(i, i + concurrencyLimit);
-         const batchResults = await Promise.all(
-           batch.map((chapter, batchIndex) =>
-             processChapter(chapter, i + batchIndex)
-           )
-         );
-         results.push(...batchResults);
-       }
+          return "Success";
+        } catch (error) {
+          console.error("Error updating course status:", error);
+          return { status: "failed", error: error.message || "Unknown error" };
+        }
+      }
+    );
 
-       return results;
-     });
-
-     // Update course status
-     const updateCourseStatusResult = await step.run(
-       "Update Course Status to Ready",
-       async () => {
-         try {
-           await db
-             .update(STUDY_MATERIAL_TABLE)
-             .set({ status: "Ready" })
-             .where(eq(STUDY_MATERIAL_TABLE.courseId, courseId));
-
-           return "Success";
-         } catch (error) {
-           console.error("Error updating course status:", error);
-           return { status: "failed", error: error.message || "Unknown error" };
-         }
-       }
-     );
-
-     return { notesResult, updateCourseStatusResult };
-   }
- );
-
+    return compressResponse({ notesResult, updateCourseStatusResult });
+  }
+);
+ 
+function compressResponse(data) {
+  const jsonData = JSON.stringify(data);
+  const compressedData = zlib.gzipSync(jsonData);
+  return new Response(compressedData, {
+    status: 200,
+    headers: {
+      "Content-Encoding": "gzip",
+      "Content-Type": "application/json",
+    },
+  });
+}
 
 
 
