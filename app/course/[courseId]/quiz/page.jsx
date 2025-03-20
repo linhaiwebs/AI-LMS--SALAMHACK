@@ -74,15 +74,13 @@ const Quiz = () => {
 
             setQuizStatus(quizResponse.status);
 
-            // Here's the fix: The response structure is different
-            // Instead of quizResponse.content.quiz.questions, we need to use quizResponse.content.quiz directly
+            // Here's ntent.quiz directly
             if (quizResponse.status === "Ready" && quizResponse?.content?.quiz?.length > 0) {
                 const quizDataToSet = {
                     questions: quizResponse.content.quiz,
                     topic: "Quiz" // You might want to set a default topic or extract it from the response
                 };
-
-                // Apply 5-second delay before showing the quiz data
+ 
                 setIsDelayed(true);
                 setTimeout(() => {
                     setQuizData(quizDataToSet);
@@ -139,6 +137,15 @@ const Quiz = () => {
     if (isLoading || isDelayed) {
         return (
             <div className="max-w-6xl mx-auto p-6 bg-white border border-blue-100 rounded-md shadow-sm">
+                <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => router.push(`/course/${courseId}`)}
+                    className="flex items-center gap-1 text-gray-600 hover:text-gray-900"
+                >
+                    <ArrowLeft size={16} />
+                    <span>Back</span>
+                </Button>
                 <div className="flex flex-col items-center justify-center p-12">
                     <Loader2 className="h-8 w-8 animate-spin text-blue-500 mb-4" />
                     <p className="text-lg font-medium text-center">
@@ -159,7 +166,16 @@ const Quiz = () => {
 
     if (!quizData || quizData?.questions?.length === 0) {
         return (
-            <div className="max-w-6xl mx-auto p-6 bg-white border border-blue-100 rounded-md shadow-sm">
+            <div className="max-w-6xl  mx-auto p-6 bg-white border border-blue-100 rounded-md shadow-sm">
+                <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => router.push(`/course/${courseId}`)}
+                    className="flex items-center gap-1 text-gray-600 hover:text-gray-900"
+                >
+                    <ArrowLeft size={16} />
+                    <span>Back</span>
+                </Button>
                 <div className="p-4 text-center">
                     <p className="text-lg font-medium">No quiz questions available.</p>
                     <Button onClick={fetchQuiz} className="mt-4">
@@ -189,7 +205,7 @@ const Quiz = () => {
     const canShowResults = answeredQuestions > 0;
 
     return (
-        <div className="max-w-6xl mx-auto p-6 bg-white border border-blue-100 rounded-md shadow-sm">
+        <div className="max-w-6xl mt-2 mx-auto p-6 bg-white border border-blue-100 rounded-md shadow-sm">
             <div className="flex justify-between items-center mb-6">
                 <Button
                     variant="ghost"
