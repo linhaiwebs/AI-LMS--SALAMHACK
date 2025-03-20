@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Learnify - AI-Powered Learning Platform
 
-## Getting Started
+Learnify is an AI-driven learning platform designed to enhance the educational experience. It allows users to create learning content, generate flashcards, quizzes, and much more using artificial intelligence for an optimized learning process.
 
-First, run the development server:
+## 🚀 Features
+
+- **AI-Powered Content Creation**: Generate educational content effortlessly with AI.
+- **Flashcards & Quizzes**: Automatically create interactive flashcards and quizzes.
+- **Personalized Learning**: Tailored content for different learning levels.
+- **Serverless Functions**: Uses Inngest for seamless backend processes.
+- **Next.js & Tailwind**: Modern frontend stack for performance and scalability.
+
+## 🎬 Demo
+
+🔗 **Live Demo**: [AI LMS - SalamHack](https://ai-lms-salamhack.vercel.app/)
+
+## 🛠️ Getting Started
+
+### First Run
+
+To set up the project locally, follow these steps:
 
 ```bash
+# Install dependencies
+npm install
+
+# Run Inngest serverless functions
+npx inngest-cli@latest dev
+
+# Start Next.js development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the application running.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 📚 Learn More
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- [Next.js Documentation](https://nextjs.org/docs) - Explore Next.js features.
+- [Inngest Documentation](https://www.inngest.com/docs) - Learn about serverless functions.
+- [Tailwind CSS](https://tailwindcss.com/docs) - Styling framework for modern UI.
 
-## Learn More
+## 🚀 Deployment
 
-To learn more about Next.js, take a look at the following resources:
+Deploy easily on **Vercel**:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+[Deploy on Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🤝 Contributing
 
-## Deploy on Vercel
+We welcome contributions! Feel free to submit issues and pull requests to improve Learnify.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+🚀 **Created for Salam Hackathon by Team AI Pioneers**
