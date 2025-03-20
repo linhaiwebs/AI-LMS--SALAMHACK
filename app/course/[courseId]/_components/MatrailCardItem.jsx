@@ -13,7 +13,8 @@ const MaterialCardItem = ({ item, studyTypeContent, course, refreshData }) => {
                 courseTitle: course?.courseLayout?.courseTitle,
                 type: item.name,
             }); 
-           // refreshData(true);
+            console.log(result.data)
+           //refreshData(true);
         } catch (error) {
             console.error("Error generating content:", error);
         }

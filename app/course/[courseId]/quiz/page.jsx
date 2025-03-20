@@ -3,9 +3,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useRouter } from "next/navigation";
 import axios from "axios";
-import { CheckCircle, X, Loader2, ArrowLeft, Award, RefreshCw } from "lucide-react";
+import {  Loader2, ArrowLeft, Award } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import LoadingState from "./_components/LoadingState";
 import ErrorState from "./_components/ErrorState";
 import GeneratingState from "./_components/GeneratingState";
 import QuizResults from "./_components/QuizResults";
@@ -37,14 +36,14 @@ const Quiz = () => {
                 fetchQuiz();
             } else {
                 clearInterval(intervalId);
-                console.log("Quiz polling completed after 10 attempts");
+                console.log("Quiz polling completed after 1 attempts " + attemptCount);
             }
-        }, 5000);
+        }, 1000);
 
         return () => {
             if (intervalId) clearInterval(intervalId);
         };
-    }, [quizStatus]);
+    }, []);
 
     const fetchQuiz = async () => {
         try {
