@@ -39,8 +39,7 @@ const MaterialCardItem = ({ item, studyTypeContent, course, refreshData }) => {
             default:
                 return false;
         }
-    };
-    console.log(studyTypeContent)
+    }; 
     const contentAvailable = hasContent();
 
     return (

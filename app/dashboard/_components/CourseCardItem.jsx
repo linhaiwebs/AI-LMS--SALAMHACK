@@ -4,7 +4,7 @@ import Link from 'next/link'
 import React from 'react'
 import { Loader2 } from "lucide-react";
 const CourseCardItem = ({ course }) => {
-    console.log(course)
+    
     return (
         <div className="border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden">
             <div className="p-4">

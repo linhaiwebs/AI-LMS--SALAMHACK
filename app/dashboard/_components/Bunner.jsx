@@ -6,7 +6,7 @@ import React from 'react'
 const Bunner = () => {
     const {user}= useUser();
   return (
-    <div className=' p-5 bg-primary/85 w-full text-white rounded-lg flex items-center' >  
+    <div className=' p-5 bg-primary/85 w-full text-white rounded-lg flex items-center flex-col sm:flex-row' >  
 
         <Image src={'/learn-ai.png'} alt='learn-ai' width={210} height={210}/>
         <div>

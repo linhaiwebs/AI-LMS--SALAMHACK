@@ -1,6 +1,4 @@
 "use client";
-
-import DashboardHeader from '@/app/dashboard/_components/DashboardHeader';
 import axios from 'axios';
 import { useParams, useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
@@ -33,7 +31,7 @@ const Course = () => {
     };
     const goBack = () => {
         router.push('/dashboard');  
-    };
+    }; 
     return (
         <div className='mx-10 md:mx-36 lg:px-60 mt-10'> 
             <Button
@@ -41,7 +39,6 @@ const Course = () => {
                 size="sm"
                 onClick={goBack}
                 className="flex items-center gap-1 my-3 text-gray-600 hover:text-gray-900"
-               
             >
                 <ArrowLeft size={16} />
                 <span>Back </span>
@@ -49,22 +46,10 @@ const Course = () => {
             {loading ? (
                 <p>Loading...</p>
             ) : course ? (
-                    <div  > 
-
-                   
+                    <div>                 
                         <CourseIntro course={course} />
                         <StudyMatrailSection courseId={courseId} course={course} />
                         <ChapterList course={course} />
-
-
-
-
-
-
-
-
-
-
                 </div>
             ) : (
                 <p>Course not found.</p>
