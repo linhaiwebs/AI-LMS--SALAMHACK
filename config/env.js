@@ -19,6 +19,7 @@ const optionalVars = {
   NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL: "/dashboard",
   INNGEST_EVENT_KEY:
     "kredD78zfedLFN_5pq6_UwjIOFnAwZW6AArZePX67QiCKUsyUqRt_OlQtnG5L0eI1x1q2HblJKXVD1RzQpg5lQ",
+  PORT: "3000",
 };
 
 /**
@@ -87,5 +88,6 @@ export function getEnvSummary() {
     GEMINI_API_KEY: mask(process.env.GEMINI_API_KEY),
     SIGN_IN_URL: process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL || "(default)",
     SIGN_UP_URL: process.env.NEXT_PUBLIC_CLERK_SIGN_UP_URL || "(default)",
+    PORT: process.env.PORT || "3000",
   };
 }
