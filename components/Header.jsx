@@ -21,9 +21,9 @@ const Header = () => {
 
   const navLinks = [
     { label: "ホーム", href: "/", active: true },
-    { label: "会社概要", href: "#about" },
-    { label: "料金プラン", href: "#pricing" },
-    { label: "お問い合わせ", href: "#contact" },
+    { label: "料金プラン", href: "/pricing" },
+    { label: "よくある質問", href: "/faq" },
+    { label: "お問い合わせ", href: "/contact" },
   ];
 
   return (

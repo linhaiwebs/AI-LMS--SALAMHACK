@@ -5,6 +5,8 @@ import { ClerkProvider } from "@clerk/nextjs";
 import Provider from "./Provider";
 import { validateEnv, getEnvSummary } from "@/config/env";
 
+export const dynamic = "force-dynamic";
+
 // Validate environment variables at build/startup time
 const envStatus = validateEnv();
 if (envStatus.valid) {

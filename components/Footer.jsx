@@ -31,10 +31,10 @@ export default function Footer() {
               コース作成
             </Link>
             <Link
-              href="#"
+              href="/pricing"
               className="text-slate-500 hover:text-primary transition-colors text-sm"
             >
-              リスクシミュレーション
+              料金プラン
             </Link>
           </div>
         </div>
@@ -44,19 +44,19 @@ export default function Footer() {
           </h4>
           <div className="flex flex-col gap-2">
             <Link
-              href="#"
+              href="/help"
               className="text-slate-500 hover:text-primary transition-colors text-sm"
             >
               ヘルプセンター
             </Link>
             <Link
-              href="#"
+              href="/faq"
               className="text-slate-500 hover:text-primary transition-colors text-sm"
             >
               よくある質問
             </Link>
             <Link
-              href="#contact"
+              href="/contact"
               className="text-slate-500 hover:text-primary transition-colors text-sm"
             >
               お問い合わせ
@@ -69,19 +69,19 @@ export default function Footer() {
           </h4>
           <div className="flex flex-col gap-2">
             <Link
-              href="#"
+              href="/terms"
               className="text-slate-500 hover:text-primary transition-colors text-sm"
             >
               利用規約
             </Link>
             <Link
-              href="#"
+              href="/privacy"
               className="text-slate-500 hover:text-primary transition-colors text-sm"
             >
               プライバシーポリシー
             </Link>
             <Link
-              href="#"
+              href="/tokushoho"
               className="text-slate-500 hover:text-primary transition-colors text-sm"
             >
               特定商取引法に基づく表記
