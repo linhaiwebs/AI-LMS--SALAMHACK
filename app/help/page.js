@@ -6,8 +6,8 @@ import { BookOpen, MessageSquare, Mail } from "lucide-react";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "ヘルプセンター | WiseAI Finance",
-  description: "WiseAI Finance ヘルプセンター - ご利用ガイドとサポート",
+  title: "ヘルプセンター | 金脳",
+  description: "金脳 ヘルプセンター - ご利用ガイドとサポート",
 };
 
 export default function HelpPage() {
@@ -36,7 +36,7 @@ export default function HelpPage() {
     <InfoPageLayout>
       <h1 className="text-3xl font-bold text-on-surface mb-4">ヘルプセンター</h1>
       <p className="text-on-surface-variant mb-10">
-        WiseAI Financeのご利用に関するサポート情報をご提供します。
+        金脳のご利用に関するサポート情報をご提供します。
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">

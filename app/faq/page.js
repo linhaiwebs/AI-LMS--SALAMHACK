@@ -5,15 +5,15 @@ import Link from "next/link";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "よくある質問 | WiseAI Finance",
-  description: "WiseAI Finance よくある質問（FAQ）",
+  title: "よくある質問 | 金脳",
+  description: "金脳 よくある質問（FAQ）",
 };
 
 export default function FAQPage() {
   const faqs = [
     {
-      q: "WiseAI Financeはどんなサービスですか？",
-      a: "WiseAI Financeは、AIを活用した株式投資教育プラットフォームです。パーソナライズされた学習コース、リアルタイムの市場分析、リスクシミュレーションなどを提供し、初心者から上級者まで投資スキルの向上をサポートします。",
+      q: "金脳はどんなサービスですか？",
+      a: "金脳は、AIを活用した株式投資教育プラットフォームです。パーソナライズされた学習コース、リアルタイムの市場分析、リスクシミュレーションなどを提供し、初心者から上級者まで投資スキルの向上をサポートします。",
     },
     {
       q: "投資の初心者でも利用できますか？",

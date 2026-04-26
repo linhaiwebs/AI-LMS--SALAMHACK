@@ -30,7 +30,7 @@ const Header = () => {
     <nav className="fixed top-0 w-full z-50 bg-white/70 dark:bg-slate-900/70 backdrop-blur-md shadow-sm border-b border-slate-200/50 dark:border-slate-800/50">
       <div className="flex justify-between items-center px-6 md:px-8 h-16 max-w-7xl mx-auto">
         <Link href="/" className="text-xl font-bold tracking-tight text-primary">
-          WiseAI Finance
+          金脳
         </Link>
 
         {/* Desktop Navigation */}

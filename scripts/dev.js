@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * WiseAI Finance server launcher.
+ * 金脳 server launcher.
  * Loads .env.local before starting Next.js so that PORT (and all other vars)
  * are available to the CLI, not just to the app runtime.
  *
@@ -54,7 +54,7 @@ loadEnvFile(envPath);
 const mode = process.argv[2] === "start" ? "start" : "dev";
 const port = process.env.PORT || "3000";
 
-console.log(`\n🚀 WiseAI Finance — ${mode === "dev" ? "Development" : "Production"} mode`);
+console.log(`\n🚀 金脳 — ${mode === "dev" ? "Development" : "Production"} mode`);
 console.log(`   Port: ${port} (from ${process.env.PORT ? ".env.local PORT" : "default"})\n`);
 
 // --- Spawn Next.js ---

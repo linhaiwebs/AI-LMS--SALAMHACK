@@ -29,7 +29,7 @@ const manrope = Manrope({
 });
 
 export const metadata = {
-  title: "WiseAI Finance - AIの力で、投資をもっと賢く",
+  title: "金脳 - AIの力で、投資をもっと賢く",
   description:
     "データ駆動のアプローチと高度な機械学習アルゴリズムで、あなたの金融リテラシーと投資戦略を次のレベルへと引き上げます。",
 };

@@ -1,5 +1,5 @@
 /**
- * Environment variable validation for WiseAI Finance.
+ * Environment variable validation for 金脳.
  * Call `validateEnv()` at app startup to ensure all required variables are set.
  */
 

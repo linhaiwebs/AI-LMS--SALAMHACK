@@ -6,8 +6,8 @@ import { Check } from "lucide-react";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "料金プラン | WiseAI Finance",
-  description: "WiseAI Finance 料金プラン - 無料プランとプロプランの比較",
+  title: "料金プラン | 金脳",
+  description: "金脳 料金プラン - 無料プランとプロプランの比較",
 };
 
 export default function PricingPage() {

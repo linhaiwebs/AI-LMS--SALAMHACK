@@ -293,7 +293,7 @@ const Home = () => {
               ユーザーの声
             </h2>
             <p className="text-base text-on-surface-variant max-w-2xl mx-auto">
-              WiseAI Financeで投資スキルを磨いた方々の体験談
+              金脳で投資スキルを磨いた方々の体験談
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -532,7 +532,7 @@ const Home = () => {
                 <div className="flex items-center space-x-3">
                   <MessageSquare className="w-5 h-5 text-primary" />
                   <span className="text-sm text-on-surface-variant">
-                    support@wiseai-finance.com
+                    support@kinno.jp
                   </span>
                 </div>
               </div>

@@ -4,8 +4,8 @@ import InfoPageLayout from "@/components/InfoPageLayout";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "利用規約 | WiseAI Finance",
-  description: "WiseAI Finance 利用規約",
+  title: "利用規約 | 金脳",
+  description: "金脳 利用規約",
 };
 
 export default function TermsPage() {
@@ -16,7 +16,7 @@ export default function TermsPage() {
         <p>最終更新日：2024年4月1日</p>
 
         <h2 className="text-xl font-semibold text-on-surface mt-8">第1条（適用）</h2>
-        <p>本規約は、WiseAI Finance（以下「当サービス」）が提供するすべてのサービスの利用に適用されます。利用者（以下「ユーザー」）は、本サービスを利用することにより、本規約に同意したものとみなされます。</p>
+        <p>本規約は、金脳（以下「当サービス」）が提供するすべてのサービスの利用に適用されます。利用者（以下「ユーザー」）は、本サービスを利用することにより、本規約に同意したものとみなされます。</p>
 
         <h2 className="text-xl font-semibold text-on-surface mt-8">第2条（利用登録）</h2>
         <p>ユーザーは、当サービスが定める方法により登録を行うものとします。登録情報に虚偽があった場合、当サービスは登録を取消すことができます。</p>

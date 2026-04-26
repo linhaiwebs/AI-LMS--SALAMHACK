@@ -1,4 +1,4 @@
-# WiseAI Finance (知恵塾金融) - AI LMS Project
+# 金脳 - AI LMS Project
 
 ## Project Overview
 Japanese AI finance education platform built with Next.js 15, Tailwind CSS v4, and Clerk authentication.

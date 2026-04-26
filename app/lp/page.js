@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Script from "next/script";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import {
@@ -17,16 +18,42 @@ import {
   Users,
 } from "lucide-react";
 
+const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || "GTM-XXXXXXX";
+
 export default function LandingPage() {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen bg-background text-foreground antialiased">
-      {/* ===== Minimal LP Nav ===== */}
+    <>
+      {/* Google Tag Manager */}
+      <Script
+        id="gtm-script"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','${GTM_ID}');
+          `,
+        }}
+      />
+      <noscript>
+        <iframe
+          src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+          height="0"
+          width="0"
+          style={{ display: "none", visibility: "hidden" }}
+        />
+      </noscript>
+
+      <div className="min-h-screen bg-background text-foreground antialiased">
+        {/* ===== Minimal LP Nav ===== */}
       <nav className="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/50">
         <div className="flex justify-between items-center px-6 md:px-8 h-14 max-w-6xl mx-auto">
           <Link href="/" className="text-lg font-bold text-primary">
-            WiseAI Finance
+            金脳
           </Link>
           <button
             onClick={() => router.push("/sign-in")}
@@ -441,7 +468,7 @@ export default function LandingPage() {
       <footer className="w-full py-8 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
         <div className="max-w-6xl mx-auto px-6 md:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-slate-500">
-            © 2024 WiseAI Finance. All rights reserved.
+            © 2024 金脳. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <Link href="/terms" className="text-xs text-slate-500 hover:text-primary transition-colors">
@@ -460,5 +487,6 @@ export default function LandingPage() {
         </div>
       </footer>
     </div>
+    </>
   );
 }

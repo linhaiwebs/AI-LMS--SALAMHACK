@@ -5,8 +5,8 @@ import { Mail } from "lucide-react";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "お問い合わせ | WiseAI Finance",
-  description: "WiseAI Finance お問い合わせフォーム",
+  title: "お問い合わせ | 金脳",
+  description: "金脳 お問い合わせフォーム",
 };
 
 export default function ContactPage() {
@@ -24,7 +24,7 @@ export default function ContactPage() {
                 <Mail className="w-5 h-5 text-primary" />
               </div>
               <span className="text-sm text-on-surface-variant">
-                support@wiseai-finance.com
+                support@kinno.jp
               </span>
             </div>
           </div>

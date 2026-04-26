@@ -7,10 +7,10 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 md:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
         <div className="md:col-span-1">
           <div className="font-bold text-slate-900 dark:text-white text-lg mb-4">
-            WiseAI Finance
+            金脳
           </div>
           <p className="text-slate-500 mb-4 text-sm">
-            © 2024 WiseAI Finance. All rights reserved.
+            © 2024 金脳. All rights reserved.
           </p>
         </div>
         <div className="md:col-span-1">
