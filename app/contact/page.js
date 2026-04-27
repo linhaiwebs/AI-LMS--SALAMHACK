@@ -24,7 +24,7 @@ export default function ContactPage() {
                 <Mail className="w-5 h-5 text-primary" />
               </div>
               <span className="text-sm text-on-surface-variant">
-                support@kinno.jp
+                support@aael.live
               </span>
             </div>
           </div>

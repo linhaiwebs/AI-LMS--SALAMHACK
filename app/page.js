@@ -532,7 +532,7 @@ const Home = () => {
                 <div className="flex items-center space-x-3">
                   <MessageSquare className="w-5 h-5 text-primary" />
                   <span className="text-sm text-on-surface-variant">
-                    support@kinno.jp
+                    support@aael.live
                   </span>
                 </div>
               </div>

@@ -54,7 +54,7 @@ export default function PrivacyPage() {
         <p>当サービスは、本ポリシーを随時変更することがあります。重要な変更がある場合は、サービス内でお知らせします。</p>
 
         <h2 className="text-xl font-semibold text-on-surface mt-8">8. お問い合わせ</h2>
-        <p>プライバシーに関するお問い合わせは、support@kinno.jpまでご連絡ください。</p>
+        <p>プライバシーに関するお問い合わせは、support@aael.liveまでご連絡ください。</p>
       </div>
     </InfoPageLayout>
   );
