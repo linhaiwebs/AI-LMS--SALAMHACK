@@ -34,14 +34,25 @@ export const metadata = {
     "データ駆動のアプローチと高度な機械学習アルゴリズムで、あなたの金融リテラシーと投資戦略を次のレベルへと引き上げます。",
 };
 
+// Check if Clerk publishable key looks valid (not a placeholder)
+const clerkKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || "";
+const hasValidClerkKey = clerkKey.startsWith("pk_test_") && !clerkKey.includes("YOUR_");
+
+function ConditionalClerkProvider({ children }) {
+  if (!hasValidClerkKey) {
+    return children;
+  }
+  return <ClerkProvider>{children}</ClerkProvider>;
+}
+
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider>
+    <ConditionalClerkProvider>
       <html lang="ja">
         <body className={clsx(manrope.variable, "font-[var(--font-manrope)]")}>
           <Provider>{children}</Provider>
         </body>
       </html>
-    </ClerkProvider>
+    </ConditionalClerkProvider>
   );
 }

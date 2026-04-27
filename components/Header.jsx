@@ -63,20 +63,12 @@ const Header = () => {
               <UserButton />
             </div>
           ) : (
-            <>
-              <button
-                onClick={() => router.push("/sign-in")}
-                className="text-slate-600 dark:text-slate-400 hover:text-primary font-medium transition-all duration-200"
-              >
-                ログイン
-              </button>
-              <button
-                onClick={() => router.push("/sign-up")}
-                className="bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 active:scale-95 transition-all duration-200 shadow-sm font-medium"
-              >
-                新規登録
-              </button>
-            </>
+            <button
+              onClick={() => router.push("/sign-in")}
+              className="bg-primary text-primary-foreground px-4 py-2 rounded-lg hover:bg-primary/90 active:scale-95 transition-all duration-200 shadow-sm font-medium"
+            >
+              ログイン
+            </button>
           )}
         </div>
 
@@ -121,26 +113,15 @@ const Header = () => {
                 </button>
               </div>
             ) : (
-              <>
-                <button
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    router.push("/sign-in");
-                  }}
-                  className="block w-full text-left py-2 text-slate-600 dark:text-slate-400 font-medium"
-                >
-                  ログイン
-                </button>
-                <button
-                  onClick={() => {
-                    setIsMobileMenuOpen(false);
-                    router.push("/sign-up");
-                  }}
-                  className="block w-full bg-primary text-primary-foreground px-4 py-2 rounded-lg font-medium text-center"
-                >
-                  新規登録
-                </button>
-              </>
+              <button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  router.push("/sign-in");
+                }}
+                className="block w-full bg-primary text-primary-foreground px-4 py-2 rounded-lg font-medium text-center"
+              >
+                ログイン
+              </button>
             )}
           </div>
         </div>
