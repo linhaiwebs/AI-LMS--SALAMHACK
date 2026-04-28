@@ -19,7 +19,7 @@ export default function PricingPage() {
       description: "AI投資学習を始めるのに最適なプラン",
       features: [
         "基本コース3本まで受講",
-        "AI市場分析レポート（週1回）",
+        "AI学習アシスタント",
         "コミュニティフォーラム参加",
         "基本的な学習進捗トラッキング",
       ],
@@ -33,9 +33,9 @@ export default function PricingPage() {
       description: "本格的に投資スキルを身につけるプラン",
       features: [
         "全コース無制限アクセス",
-        "AI市場分析レポート（毎日）",
+        "AI学習アシスタント24/7",
         "パーソナライズされた学習パス",
-        "リスクシミュレーションツール",
+        "リスクシミュレーション学習",
         "優先サポート",
         "新しいコースの先行アクセス",
       ],
@@ -129,6 +129,9 @@ export default function PricingPage() {
       <div className="mt-12 text-center text-sm text-on-surface-variant">
         <p>すべてのプランに消費税が含まれています。クレジットカードでのお支払いに対応しています。</p>
         <p className="mt-2">エンタープライズプランについては、<Link href="/contact" className="text-primary underline">お問い合わせ</Link>ください。</p>
+        <p className="mt-4 text-xs text-on-surface-variant">
+          ⚠️ 当サービスは金融教育を目的としており、投資勧誘・投資アドバイスを行うものではありません。投資にはリスクが伴います。
+        </p>
       </div>
     </InfoPageLayout>
   );

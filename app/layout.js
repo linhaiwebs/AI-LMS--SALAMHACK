@@ -29,9 +29,9 @@ const manrope = Manrope({
 });
 
 export const metadata = {
-  title: "金脳 - AIの力で、投資をもっと賢く",
+  title: "金脳 - AIで学ぶ投資教育",
   description:
-    "データ駆動のアプローチと高度な機械学習アルゴリズムで、あなたの金融リテラシーと投資戦略を次のレベルへと引き上げます。",
+    "AIを活用したパーソナライズ学習で、金融リテラシーと投資の基礎知識を効果的に身につける教育プラットフォーム。",
 };
 
 const jaLocalization = {

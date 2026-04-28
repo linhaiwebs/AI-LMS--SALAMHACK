@@ -14,8 +14,8 @@ export default function Page() {
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
           <div className="absolute bottom-8 left-8 right-8 text-white">
-            <h2 className="text-2xl font-bold mb-2">AIの力で、投資をもっと賢く。</h2>
-            <p className="text-sm opacity-90">データ駆動のアプローチで、あなたの金融リテラシーを次のレベルへ。</p>
+            <h2 className="text-2xl font-bold mb-2">AIで学ぶ、投資の基礎知識。</h2>
+            <p className="text-sm opacity-90">パーソナライズされた学習で、金融リテラシーを効果的に身につけましょう。</p>
           </div>
         </aside>
 

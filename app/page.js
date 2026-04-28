@@ -34,7 +34,7 @@ const Home = () => {
     {
       title: "AIが導く米国株投資の基礎",
       description:
-        "米国市場の構造から、AIを活用した優良銘柄のスクリーニング手法までを基礎から学びます。",
+        "米国市場の構造から、AIを活用した銘柄分析の基礎手法までを学びます。",
       level: "初級",
       lessons: "全12レッスン",
       image:
@@ -52,7 +52,7 @@ const Home = () => {
     {
       title: "ポートフォリオ最適化戦略",
       description:
-        "モダンポートフォリオ理論に基づく、AIによるリスク調整後リターンの最大化アプローチ。",
+        "モダンポートフォリオ理論に基づく、AIによるリスクとリターンの基礎を学ぶアプローチ。",
       level: "上級",
       lessons: "全10レッスン",
       image:
@@ -79,10 +79,10 @@ const Home = () => {
               <h1 className="text-4xl md:text-5xl font-bold text-on-surface tracking-tight leading-tight">
                 AIの力で、
                 <br />
-                <span className="text-primary-container">投資をもっと賢く。</span>
+                <span className="text-primary-container">投資をしっかり学ぶ。</span>
               </h1>
               <p className="text-lg text-on-surface-variant max-w-xl leading-relaxed">
-                データ駆動のアプローチと高度な機械学習アルゴリズムで、あなたの金融リテラシーと投資戦略を次のレベルへと引き上げます。
+                AIを活用したパーソナライズ学習で、金融リテラシーと投資の基礎知識を効果的に身につけましょう。
               </p>
               <div className="flex flex-col sm:flex-row gap-4 pt-4">
                 <button
@@ -120,15 +120,15 @@ const Home = () => {
                   </div>
                   <div>
                     <p className="text-xs text-on-surface-variant">
-                      AI予測スコア
+                      学習完了率
                     </p>
                     <p className="text-2xl font-semibold text-on-surface">
-                      94.2%
+                      コース対応
                     </p>
                   </div>
                 </div>
                 <div className="w-full bg-surface-container-high h-2 rounded-full mt-2">
-                  <div className="bg-secondary h-2 rounded-full w-[94%]" />
+                  <div className="bg-secondary h-2 rounded-full w-[70%]" />
                 </div>
               </div>
             </div>
@@ -142,7 +142,7 @@ const Home = () => {
               次世代の投資学習体験
             </h2>
             <p className="text-base text-on-surface-variant max-w-2xl mx-auto">
-              複雑な金融データをAIがシンプルに解き明かし、あなたに最適な学習パスを提供します。
+              複雑な金融知識をAIが分かりやすく解説し、あなたに最適な学習パスを提供します。
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -153,10 +153,10 @@ const Home = () => {
                   <BarChart3 className="w-6 h-6 text-primary-container" />
                 </div>
                 <h3 className="text-2xl font-semibold text-on-surface mb-3">
-                  リアルタイムAI市場分析
+                  AI市場分析で学ぶ
                 </h3>
                 <p className="text-base text-on-surface-variant">
-                  膨大なニュースや市場データを24時間監視し、重要なトレンドやリスクを瞬時に抽出して分かりやすく解説します。
+                  市場データの読み方や分析方法をAIが分かりやすく解説。投資の基礎知識を体系的に身につけられます。
                 </p>
               </div>
               <div className="mt-8 bg-surface rounded-xl h-48 border border-outline-variant flex items-center justify-center">
@@ -204,7 +204,7 @@ const Home = () => {
               </div>
               <div>
                 <h3 className="text-2xl font-semibold text-on-surface mb-2">
-                  専属のAIアドバイザー
+                  AI学習アシスタント
                 </h3>
                 <p className="text-base text-on-surface-variant">
                   投資に関する疑問をいつでもAIに質問可能。専門用語も分かりやすく解説します。
@@ -271,10 +271,10 @@ const Home = () => {
         <section className="max-w-[1280px] mx-auto px-4 md:px-10 py-16">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { value: "50,000+", label: "アクティブユーザー" },
-              { value: "1,200+", label: "AI分析レポート" },
-              { value: "98.5%", label: "予測精度" },
-              { value: "24/7", label: "AIサポート" },
+              { value: "3+", label: "投資教育コース" },
+              { value: "24/7", label: "AI学習サポート" },
+              { value: "無料", label: "フリープラン" },
+              { value: "いつでも", label: "学習可能" },
             ].map((stat, index) => (
               <div key={index} className="text-center">
                 <p className="text-3xl md:text-4xl font-bold text-primary mb-2">
@@ -301,17 +301,17 @@ const Home = () => {
               {
                 name: "田中 健太",
                 role: "個人投資家",
-                text: "AIの市場分析が驚くほど的確で、投資の判断材料として重宝しています。初心者でも理解しやすい解説が魅力です。",
+                text: "投資の基礎を体系的に学べるので、初心者にもおすすめです。専門用語も分かりやすく解説してくれます。",
               },
               {
                 name: "佐藤 美咲",
                 role: "金融アナリスト",
-                text: "アルゴリズムトレードのコースは実践的で、即座に仕事に活かせました。リスク管理の観点からも非常に有益なプラットフォームです。",
+                text: "アルゴリズムトレードのコースは実践的で、学習内容を理解するのに役立ちました。リスク管理の観点からも有益な学習プラットフォームです。",
               },
               {
                 name: "山田 雄一",
                 role: "会社員",
-                text: "仕事帰りのスキマ時間で学べるのが良いです。AIアドバイザーに質問すれば、専門用語も分かりやすく解説してくれます。",
+                text: "仕事帰りのスキマ時間で学べるのが良いです。AIアシスタントに質問すれば、専門用語も分かりやすく解説してくれます。",
               },
             ].map((testimonial, index) => (
               <div
@@ -369,8 +369,8 @@ const Home = () => {
                 price: "¥0",
                 period: "/月",
                 features: [
-                  "基本AI市場分析",
-                  "コース3本まで",
+                  "基本コース3本まで",
+                  "AI学習アシスタント",
                   "コミュニティアクセス",
                 ],
                 cta: "無料で始める",
@@ -381,10 +381,10 @@ const Home = () => {
                 price: "¥2,980",
                 period: "/月",
                 features: [
-                  "全AI市場分析機能",
                   "全コース無制限アクセス",
-                  "AIアドバイザー24/7",
-                  "リスクシミュレーション",
+                  "AI学習アシスタント24/7",
+                  "リスクシミュレーション学習",
+                  "パーソナライズ学習パス",
                 ],
                 cta: "プロプランで始める",
                 highlighted: true,
@@ -395,7 +395,7 @@ const Home = () => {
                 period: "",
                 features: [
                   "チーム管理機能",
-                  "カスタムAIモデル",
+                  "カスタム学習プラン",
                   "専任サポート",
                   "API連携",
                 ],
@@ -495,10 +495,10 @@ const Home = () => {
             />
             <div className="relative z-10 max-w-2xl mx-auto">
               <h2 className="text-3xl font-bold text-white mb-6">
-                今すぐ投資の未来を体験しよう
+                今すぐ投資学習を始めよう
               </h2>
               <p className="text-lg text-white/80 mb-10">
-                無料アカウントを作成して、AIによる最新の市場分析とパーソナライズされた学習コースにアクセスしましょう。
+                無料アカウントを作成して、AIによるパーソナライズされた投資学習コースにアクセスしましょう。
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
                 <button
@@ -589,6 +589,15 @@ const Home = () => {
           </div>
         </section>
       </main>
+
+      {/* Google Ads Compliance Disclaimer */}
+      <div className="bg-surface-container border-t border-outline-variant py-6">
+        <div className="max-w-[1280px] mx-auto px-4 md:px-10">
+          <p className="text-xs text-on-surface-variant leading-relaxed text-center">
+            ⚠️ <strong>重要事項：</strong>当サービスは金融教育を目的としており、投資勧誘・投資アドバイス・特定の金融商品の推奨を行うものではありません。投資にはリスクが伴い、過去の実績は将来の成果を保証するものではありません。すべての投資判断はご自身の責任において行ってください。必要に応じて、独立した金融アドバイザーにご相談ください。
+          </p>
+        </div>
+      </div>
 
       <Footer />
     </div>

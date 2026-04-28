@@ -22,7 +22,7 @@ export default function Footer() {
               href="/dashboard"
               className="text-slate-500 hover:text-primary transition-colors text-sm"
             >
-              AI市場分析
+              学習ダッシュボード
             </Link>
             <Link
               href="/create"
@@ -88,6 +88,12 @@ export default function Footer() {
             </Link>
           </div>
         </div>
+      </div>
+      {/* Google Ads Compliance Disclaimer */}
+      <div className="max-w-7xl mx-auto px-6 md:px-8 mt-8 pt-6 border-t border-slate-200 dark:border-slate-800">
+        <p className="text-xs text-slate-500 leading-relaxed text-center">
+          ⚠️ <strong>重要事項：</strong>当サービスは金融教育を目的としており、投資勧誘・投資アドバイス・特定の金融商品の推奨を行うものではありません。投資にはリスクが伴い、過去の実績は将来の成果を保証するものではありません。すべての投資判断はご自身の責任において行ってください。
+        </p>
       </div>
     </footer>
   );

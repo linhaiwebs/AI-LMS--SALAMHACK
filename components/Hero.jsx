@@ -6,16 +6,16 @@ const HeroSection = () => {
         <section className=" h-[70%] flex flex-col items-center justify-center hero-bg text-center">
             <div className="flex items-center justify-between w-full max-w-6xl p-4 mb-4">
                 <div className=" ring-1 ring-gray-300  px-4 py-1 rounded-full   text-center mx-auto" >
-                    <span className="text-sm font-medium">AI Generator Membership - Join Now</span>
+                    <span className="text-sm font-medium">AI学習メンバーシップ - 今すぐ参加</span>
                 </div>
             </div>
 
             <h1 className="text-6xl font-bold text-gray-800">
-                AI-Powered Course  <span className="text-primary">Creation</span>
+                AIで学ぶ投資教育 <span className="text-primary">コース作成</span>
             </h1>
 
             <p className="mt-4 text-xl text-gray-500 max-w-2xl">
-                Revolutionize your content creation with our AI-powered app, delivering engaging and high-quality text in seconds.
+                AIを活用した学習プラットフォームで、投資の基礎知識を効果的に身につけましょう。
             </p>
 
             <Link href='/dashboard/'
@@ -24,7 +24,7 @@ const HeroSection = () => {
                     className=" bg-primary hover:bg-transparent mt-3 hover:text-[#3700ce]  hover:ring-blue-500 border ring-blue-400 py-6 px-5 text-white text-2xl hover:scale-105"
 
                 >
-                    Get started
+                    始める
                 </Button>
             </Link>
         </section>

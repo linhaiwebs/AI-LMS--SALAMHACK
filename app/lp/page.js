@@ -108,23 +108,23 @@ export default function LandingPage() {
         <section className="max-w-4xl mx-auto px-6 md:px-8 pb-16">
           <div className="flex flex-wrap justify-center gap-8 items-center">
             <div className="text-center">
-              <p className="text-2xl font-bold text-primary">5,000+</p>
-              <p className="text-xs text-on-surface-variant">登録ユーザー</p>
-            </div>
-            <div className="w-px h-10 bg-outline-variant hidden sm:block" />
-            <div className="text-center">
-              <p className="text-2xl font-bold text-primary">50+</p>
+              <p className="text-2xl font-bold text-primary">3+</p>
               <p className="text-xs text-on-surface-variant">投資教育コース</p>
             </div>
             <div className="w-px h-10 bg-outline-variant hidden sm:block" />
             <div className="text-center">
-              <p className="text-2xl font-bold text-primary">4.8</p>
-              <p className="text-xs text-on-surface-variant">ユーザー評価</p>
+              <p className="text-2xl font-bold text-primary">24/7</p>
+              <p className="text-xs text-on-surface-variant">AI学習サポート</p>
             </div>
             <div className="w-px h-10 bg-outline-variant hidden sm:block" />
             <div className="text-center">
-              <p className="text-2xl font-bold text-primary">98%</p>
-              <p className="text-xs text-on-surface-variant">満足度</p>
+              <p className="text-2xl font-bold text-primary">無料</p>
+              <p className="text-xs text-on-surface-variant">フリープラン</p>
+            </div>
+            <div className="w-px h-10 bg-outline-variant hidden sm:block" />
+            <div className="text-center">
+              <p className="text-2xl font-bold text-primary">いつでも</p>
+              <p className="text-xs text-on-surface-variant">キャンセル可能</p>
             </div>
           </div>
         </section>
@@ -149,9 +149,9 @@ export default function LandingPage() {
               },
               {
                 icon: BarChart3,
-                title: "データ駆動の市場分析",
+                title: "データ駆動の学習",
                 description:
-                  "膨大な市場データをAIが分析し、重要なトレンドとリスクを分かりやすく解説。情報の海で迷わず意思決定ができます。",
+                  "市場データの読み方や分析方法をAIが分かりやすく解説。情報を正しく理解する力を養います。",
               },
               {
                 icon: ShieldCheck,
@@ -319,7 +319,7 @@ export default function LandingPage() {
                 {
                   name: "S.N.",
                   role: "会社員・投資初心者",
-                  text: "無料プランから始めて、価値を感じてプロプランにアップグレードしました。毎日のAI市場分析レポートがとても参考になります。",
+                  text: "無料プランから始めて、価値を感じてプロプランにアップグレードしました。AI学習アシスタントがとても役立ちます。",
                   stars: 4,
                 },
               ].map((review) => (
@@ -371,7 +371,7 @@ export default function LandingPage() {
                 <span className="text-sm text-on-surface-variant">/月</span>
               </div>
               <ul className="space-y-2 mb-8">
-                {["基本コース3本", "週1回AI市場分析", "コミュニティ参加"].map((f) => (
+                {["基本コース3本", "AI学習アシスタント", "コミュニティ参加"].map((f) => (
                   <li key={f} className="flex items-center space-x-2">
                     <CheckCircle2 className="w-4 h-4 text-secondary flex-shrink-0" />
                     <span className="text-sm text-on-surface-variant">{f}</span>
@@ -396,9 +396,9 @@ export default function LandingPage() {
               <ul className="space-y-2 mb-8">
                 {[
                   "全コース無制限",
-                  "毎日AI市場分析",
+                  "AI学習アシスタント24/7",
                   "パーソナライズ学習",
-                  "リスクシミュレーション",
+                  "リスクシミュレーション学習",
                   "優先サポート",
                 ].map((f) => (
                   <li key={f} className="flex items-center space-x-2">
@@ -427,7 +427,7 @@ export default function LandingPage() {
                 AIと一緒に、投資の正しい知識を身につけよう
               </h2>
               <p className="text-base text-white/80 mb-8">
-                無料アカウントを作成して、パーソナライズされたAI投資学習を今すぐ始めましょう。
+                無料アカウントを作成して、パーソナライズされたAI投資学習を始めましょう。
               </p>
               <button
                 onClick={() => router.push("/sign-in")}
